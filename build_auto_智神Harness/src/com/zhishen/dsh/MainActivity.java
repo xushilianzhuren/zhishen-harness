@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     private static final String DSH_ENTRY = BuildConfig.DSH_ENTRY;
     private static final String DSH_SH = BuildConfig.DSH_SH;
     private static final String URL = DSH_ENTRY;
-    private static final String URL_MARKET = "https://dsh.market/";
+    private static final String URL_MARKET = "file:///android_asset/market_plus.html"; // 市场Plus(本地·免装载)·官方市场从Plus页可达
     private static final String URL_SH = DSH_SH;
     private static final int M_GO_MAIN = 1;
     private static final int M_GO_MARKET = 2;
