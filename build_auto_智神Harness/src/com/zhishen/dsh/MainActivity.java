@@ -21,11 +21,12 @@ import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-    private static final String URL =
-        "http://124.156.160.121:8080/?token=zhishen-dsh-g0";
+    // 服务器入口·构建期注入(部署者自配·开源版默认占位·不带任何真实地址/令牌)
+    private static final String DSH_ENTRY = BuildConfig.DSH_ENTRY;
+    private static final String DSH_SH = BuildConfig.DSH_SH;
+    private static final String URL = DSH_ENTRY;
     private static final String URL_MARKET = "https://dsh.market/";
-    private static final String URL_SH =
-        "http://101.35.222.84:3081/?token=zhishen-dsh-g0";
+    private static final String URL_SH = DSH_SH;
     private static final int M_GO_MAIN = 1;
     private static final int M_GO_MARKET = 2;
     private static final int M_GO_MAIN_SH = 3;
@@ -119,7 +120,7 @@ public class MainActivity extends Activity {
         DomPoster(String b) { body = b; }
         public void run() {
             try {
-                java.net.URL u = new java.net.URL("http://124.156.160.121:8080/dom");
+                java.net.URL u = new java.net.URL(DSH_ENTRY + "dom");
                 java.net.HttpURLConnection hc = (java.net.HttpURLConnection) u.openConnection();
                 hc.setRequestMethod("POST"); hc.setDoOutput(true); hc.setConnectTimeout(8000);
                 hc.setFixedLengthStreamingMode(body.getBytes("UTF-8").length);
@@ -286,7 +287,7 @@ public class MainActivity extends Activity {
     static class TcpWarm implements Runnable {
         public void run() {
             try { java.net.Socket sk = new java.net.Socket();
-                sk.connect(new java.net.InetSocketAddress("124.156.160.121", 8080), 3000);
+                sk.connect(new java.net.InetSocketAddress(BuildConfig.DSH_HOST, 8080), 3000);
                 sk.close(); } catch (Exception e) {}
         }
     }
